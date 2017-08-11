@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>IOT Farm</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/highcharts.css.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/highcharts/highcharts.js"></script>
+  
+  
+  <style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 58px;
+  height: 28px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 25px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #9999ff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #9999ff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+<form name="farmControl">
+<div class="container">
+  <h2><b>IOT Farm System</b></h2>
+  <p>&nbsp;</p>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">To Day Status</a></li>
+	<li><a data-toggle="tab" href="#sensorResult">Sensor Results</a></li>
+    <li><a data-toggle="tab" href="#trackMngr">Tracks</a></li>
+    <li><a data-toggle="tab" href="#statistic">Statistics</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+	<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Plant</th>
+        <th>status</th>
+		<th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>track 01</td>
+        <td>complete</td>
+		<td>08:30</td>
+      </tr>
+      <tr>
+        <td>track 02</td>
+        <td>complete</td>
+		<td>08:30</td>
+      </tr>
+      <tr>
+        <td>track 03</td>
+        <td>complete</td>
+		<td>08:30</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+	</div>
+	<div id="sensorResult" class="tab-pane">
+	<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Sensor</th>
+        <th>Result</th>
+		<th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Temp</td>
+        <td>27.0c</td>
+		<td>08:30</td>
+      </tr>
+      <tr>
+        <td>PHO.</td>
+        <td>0.70</td>
+		<td>08:30</td>
+      </tr>
+      <tr>
+        <td>Water Level</td>
+        <td>0.5</td>
+		<td>08:30</td>
+      </tr>
+    </tbody>
+  </table>
+    <hr/>
+	</div>
+    <div id="trackMngr" class="tab-pane fade">
+		<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#trackExecAll">Execute</a></li>
+    <li><a data-toggle="tab" href="#trackExec">Task</a></li>
+  </ul>
+	<div class="tab-content">
+    <div id="trackExecAll" class="tab-pane fade in active">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Track Name</th>
+        <th>Switch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>track 01</td>
+        <td>
+			<label class="switch">
+				<input type="checkbox" data-toggle="modal" data-target="#myModal" checked>
+				<span class="slider round"></span>
+			</label>
+		</td>
+      </tr>
+      <tr>
+        <td>track 02</td>
+        <td>
+					<label class="switch">
+				<input type="checkbox" checked>
+				<span class="slider round"></span>
+			</label>
+		</td>
+      </tr>
+      <tr>
+        <td>track 03</td>
+        <td>
+					<label class="switch">
+				<input type="checkbox" checked>
+				<span class="slider round"></span>
+			</label>
+		</td>
+      </tr>
+    </tbody>
+  </table>
+    <hr/>
+	  </div>
+	  <div id="trackExec" class="tab-pane">
+	  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Switch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Water Fertilizer</td>
+        <td>
+			<label class="switch">
+				<input type="checkbox" checked>
+				<span class="slider round"></span>
+			</label>
+		</td>
+      </tr>
+      <tr>
+        <td>Water Fuzzy</td>
+        <td>
+					<label class="switch">
+				<input type="checkbox" checked>
+				<span class="slider round"></span>
+			</label>
+		</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+	  </div>
+    </div>
+	</div>
+    <div id="statistic" class="tab-pane fade">
+      <h5><b>Period</b></h5>
+      <div class="container">
+	  <div class="row">
+	  <div class="col-sm-12">
+	  <select name="fpy" class="form-control" style="width: 80px; display: inline"><option>2017</option></select>
+
+	  <select name="mpy" class="form-control" style="width: 80px; display: inline"><option>Jan</option></select>
+
+	  <select name="tpy" class="form-control" style="width: 80px; display: inline"><option>2017</option></select>
+
+	  <select name="tpy" class="form-control" style="width: 80px; display: inline"><option>Dec</option></select>
+	  </div>
+	  </div>
+	  </div>
+	  <div class="row">
+	  <div class="col-sm-12">
+	  <div id="graph01">
+		
+	  </div>
+	  </div>
+	  </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</form>
+				<script>
+					$(document).ready(
+						function() {
+							callGraph01();
+						}
+					);
+					function callGraph01() {
+						Highcharts.chart('graph01', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Monthly Average Sensor Result'
+    },
+    subtitle: {
+        text: 'Source: IOT Farm System'
+    },
+    xAxis: {
+        categories: [
+            'Jan-17',
+            'Feb-17',
+            'Mar-17',
+            'Apr-17',
+            'May-17',
+            'Jun-17',
+            'Jul-17',
+            'Aug-17',
+            'Sep-17',
+            'Oct-17',
+            'Nov-17',
+            'Dec-17'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Temp',
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+    }, {
+        name: 'PHO',
+        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+    }, {
+        name: 'Water Level',
+        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+    }]
+});
+					}
+				</script>
+</body>
+</html>
